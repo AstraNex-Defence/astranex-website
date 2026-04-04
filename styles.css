@@ -862,6 +862,7 @@ p {
 .team-modal-photo {
   width: 40%;
   object-fit: cover;
+  object-position: top center;
   filter: grayscale(80%);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -919,7 +920,8 @@ p {
   
   .team-modal-photo {
     width: 100%;
-    height: 250px;
+    height: 300px;
+    object-position: top center;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -1307,6 +1309,24 @@ p {
   min-height: 36px;
   display: inline-flex;
   align-items: center;
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* X (Twitter) uses a solid path fill instead of a stroke */
+.social-icon--x svg {
+  fill: currentColor;
+  stroke: none;
 }
 
 .social-icon:hover {
