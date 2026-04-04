@@ -406,13 +406,7 @@ if (scrollIndicator && heroSection) {
         });
     }
 
-    /* ──────────────────────────────────────────
-       12. LUCIDE ICONS INIT
-       Converts all <i data-lucide="..."> HTML elements into interactive SVG icons.
-       ────────────────────────────────────────── */
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+
 
     /* ──────────────────────────────────────────
        13. TERMINAL HEADER TYPEWRITER EFFECT
