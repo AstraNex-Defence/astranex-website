@@ -295,10 +295,21 @@ if (scrollIndicator && heroSection) {
     const teamModal = document.getElementById('team-modal');
     const modalCloseBtn = document.querySelector('.team-modal-close');
     const teamCards = document.querySelectorAll('.team-member');
+    const linkedinLinks = document.querySelectorAll('.linkedin-link');
+
+    // Prevent team card from opening when clicking the LinkedIn link directly
+    linkedinLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
 
     if (teamModal && teamCards.length > 0) {
         teamCards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                // If user clicks the linkedin link, let the link handle it (don't open modal)
+                if (e.target.closest('.linkedin-link')) return;
+
                 const photoSrc = card.querySelector('.team-photo').getAttribute('src');
                 const nameText = card.querySelector('h3').textContent;
                 const roleText = card.querySelector('.role').textContent;
@@ -378,18 +389,20 @@ if (scrollIndicator && heroSection) {
        ────────────────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Use lenis to smoothly slide to the element
-                lenis.scrollTo(targetElement, {
-                    offset: -80, // Offset for the fixed header
-                    duration: 3, // Increased duration to make the scroll very slow and smooth
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                });
+            // Only handle internal anchors, ignore placeholders (#) or changed URLs (https://)
+            if (targetId && targetId.startsWith('#') && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Use lenis to smoothly slide to the element
+                    lenis.scrollTo(targetElement, {
+                        offset: -80, // Offset for the fixed header
+                        duration: 3, // Increased duration to make the scroll very slow and smooth
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                }
             }
         });
     });
