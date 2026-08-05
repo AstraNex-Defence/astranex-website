@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =============================================
+         META & SEO
+         ============================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Careers at Astranex Defence — Join us in building India's autonomous defence platform.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Careers | Astranex Defence">
+    <meta property="og:description"
+        content="Join us in engineering the next generation of autonomous defence systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://astranexdefence.com/careers.html">
+    <meta property="og:image" content="https://astranexdefence.com/photo/astranex-preview.jpg">
+
+    <title>Careers | Astranex Defence</title>
+
+    <!-- =============================================
+         FAVICON SETUP (relative paths for GitHub Pages)
+         ============================================= -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+
+    <!-- =============================================
+         FONTS
+         ============================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- =============================================
+         STYLES
+         ============================================= -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific page adjustments for Careers */
+        .careers-hero {
+            padding-top: calc(var(--header-h) + var(--spacing-xl));
+            padding-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        .form-frame-container {
+            margin: var(--spacing-md) auto var(--spacing-xl) auto;
+            max-width: 900px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.01);
+            position: relative;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .form-frame-container::before,
+        .form-frame-container::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+        .form-frame-container::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        .form-frame-container::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+        iframe {
+            display: block;
+            width: 100%;
+            height: 800px;
+            background: transparent;
+            border: none;
+        }
+        /* Style adjustments for custom navigation link back to index */
+        .sticky-header .main-nav a,
+        .mobile-nav a {
+            min-height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Subtle grid background overlay -->
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <!-- Glowing cursor trailing effect -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Scroll progress bar (top of viewport) -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- =============================================
+         HEADER / NAVIGATION
+         ============================================= -->
+    <header class="sticky-header" role="banner">
+        <!-- Brand -->
+        <a href="index.html#hero" class="brand" aria-label="Astranex Defence — return to top">
+            <span class="brand-symbol" aria-hidden="true">
+                <img src="photo/astranex-preview.jpg" alt="Astranex Defence logo" class="brand-logo">
+            </span>
+            <span class="logo">ASTRANEX DEFENCE</span>
+        </a>
+
+        <!-- Desktop navigation -->
+        <nav class="main-nav" aria-label="Primary navigation">
+            <a href="index.html#mission">Mission</a>
+            <a href="index.html#vision">Vision</a>
+            <a href="index.html#team">Our Team</a>
+            <a href="careers.html" class="active" style="opacity: 1; text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);">Careers</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <!-- System status badge -->
+        <div class="system-status" aria-label="System status">SYSTEM: <span class="active"
+                aria-live="polite">ACTIVE</span></div>
+
+        <!-- Mobile hamburger button -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false"
+            aria-controls="mobile-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </header>
+
+    <!-- Mobile navigation drawer -->
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html#mission" class="mobile-nav-link">Mission</a>
+        <a href="index.html#vision" class="mobile-nav-link">Vision</a>
+        <a href="index.html#team" class="mobile-nav-link">Our Team</a>
+        <a href="careers.html" class="mobile-nav-link" style="color: #fff; background: rgba(255, 255, 255, 0.03);">Careers</a>
+        <a href="index.html#about" class="mobile-nav-link">About</a>
+        <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+    </nav>
+
+    <!-- =============================================
+         MAIN CONTENT
+         ============================================= -->
+    <main>
+        <!-- ── HERO ───────────────────────────────── -->
+        <section class="careers-hero">
+            <div class="container centered-layout">
+                <h1 id="careers-heading">JOIN THE MISSION</h1>
+                <p class="subtext">Help us engineer secure, interoperable technologies for India's autonomous defence systems.</p>
+            </div>
+        </section>
+
+        <!-- ── EMBEDDED FORM ──────────────────────── -->
+        <section class="content-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="form-frame-container">
+                    <!-- Terminal-style header bar -->
+                    <div class="terminal-header" aria-hidden="true" style="border-bottom: 1px solid var(--border-color);">
+                        <span class="terminal-dot"></span>
+                        <span class="terminal-dot"></span>
+                        <span class="terminal-dot"></span>
+                        RECRUITING GATEWAY &nbsp;// &nbsp;APPLY.ASTRANEX.SYS
+                    </div>
+                    <!-- Google Form Embed with Dark Theme overlay properties -->
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdvC4aQ0q65H8b8QZz4c4Qe7b_z4Z74c-4-4_4-4_4-4_4-4Q/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Brand column -->
+                <div class="footer-col brand-col">
+                    <h4 class="footer-heading brand">ASTRANEX DEFENCE</h4>
+                    <p class="footer-desc">Autonomous ground systems and edge-AI security platforms engineered for
+                        mission-critical environments.</p>
+                    <nav class="social-links" aria-label="Social media links">
+                        <a href="https://www.linkedin.com/company/astranexdefence/" target="_blank"
+                            rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg></a>
+                        <a href="https://mail.google.com/mail/?view=cm&to=astranexdefence@gmail.com" target="_blank"
+                            rel="noopener noreferrer" class="social-icon" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></a>
+                        <a href="https://www.youtube.com/@astranexdefence" target="_blank" rel="noopener noreferrer"
+                            class="social-icon" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2z" /><path d="m10 15 5-3-5-3z" /></svg></a>
+                        <a href="https://www.instagram.com/astranexdefence/" target="_blank" rel="noopener noreferrer"
+                            class="social-icon" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg></a>
+                        <a href="https://www.facebook.com/profile.php?id=61588546832508" target="_blank"
+                            rel="noopener noreferrer" class="social-icon"
+                            aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+                        <a href="https://x.com/astranexdefence" target="_blank" rel="noopener noreferrer"
+                            class="social-icon social-icon--x" aria-label="X (formerly Twitter)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg></a>
+                    </nav>
+                </div>
+
+                <!-- Company links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">COMPANY</h4>
+                    <ul class="footer-nav">
+                        <li><a href="index.html#mission">Mission</a></li>
+                        <li><a href="index.html#vision">Vision</a></li>
+                        <li><a href="index.html#team">Our Team</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">SUPPORT</h4>
+                    <ul class="footer-nav">
+                        <li><a href="index.html#contact">Documentation</a></li>
+                        <li><a href="index.html#contact">Technical Overview</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="index.html#contact">Secure Inquiry</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Legal links -->
+            <nav class="footer-legal" aria-label="Legal links">
+                <a href="index.html#contact">Privacy Policy</a>
+                <a href="index.html#contact">Terms of Service</a>
+                <a href="index.html#contact">Compliance</a>
+                <a href="index.html#contact">Security Statement</a>
+            </nav>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <div class="copyright">© 2026 Astranex Defence. All rights reserved.</div>
+                <div class="footer-status" aria-label="System online">
+                    <span class="status-dot-live" aria-hidden="true"></span>
+                    System Status: Active
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         SCRIPTS
+         ============================================= -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
