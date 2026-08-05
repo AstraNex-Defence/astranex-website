@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- =============================================
+         META & SEO
+         ============================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Careers at Astranex Defence — Join us in building India's autonomous defence platform.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Careers | Astranex Defence">
+    <meta property="og:description"
+        content="Join us in engineering the next generation of autonomous defence systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://astranexdefence.com/careers.html">
+    <meta property="og:image" content="https://astranexdefence.com/photo/astranex-preview.jpg">
+
+    <title>Careers | Astranex Defence</title>
+
+    <!-- =============================================
+         FAVICON SETUP (relative paths for GitHub Pages)
+         ============================================= -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+
+    <!-- =============================================
+         FONTS
+         ============================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- =============================================
+         STYLES
+         ============================================= -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Dedicated styling for Careers page */
+        .careers-hero {
+            padding-top: calc(var(--header-h) + var(--spacing-lg));
+            padding-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .portal-card {
+            max-width: 860px;
+            margin: 0 auto var(--spacing-xl) auto;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.02);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .portal-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 255, 255, 0.05);
+        }
+
+        .portal-body {
+            padding: var(--spacing-lg) var(--spacing-md);
+            text-align: center;
+        }
+
+        .portal-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: #00ffaa;
+            text-transform: uppercase;
+            background: rgba(0, 255, 170, 0.06);
+            border: 1px solid rgba(0, 255, 170, 0.2);
+            padding: 6px 14px;
+            border-radius: 2px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .portal-title {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .portal-desc {
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto var(--spacing-lg) auto;
+            line-height: 1.7;
+        }
+
+        .apply-btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .apply-main-btn {
+            width: 320px;
+            max-width: 100%;
+            height: 54px;
+            font-size: 0.9rem;
+            letter-spacing: 2.5px;
+            background-color: var(--text-primary);
+            color: var(--bg-color);
+            border: 1px solid var(--text-primary);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .apply-main-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .portal-note {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            letter-spacing: 1px;
+        }
+
+        /* Positions Grid */
+        .positions-title {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .role-card {
+            border: 1px solid var(--border-color);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.01);
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .role-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+        }
+
+        .role-tags {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Subtle grid background overlay -->
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <!-- Glowing cursor trailing effect -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Scroll progress bar (top of viewport) -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- =============================================
+         HEADER / NAVIGATION
+         ============================================= -->
+    <header class="sticky-header" role="banner">
+        <!-- Brand -->
+        <a href="index.html#hero" class="brand" aria-label="Astranex Defence — return to top">
+            <span class="brand-symbol" aria-hidden="true">
+                <img src="photo/logo.png" alt="Astranex Defence logo" class="brand-logo" style="object-fit: contain;">
+            </span>
+            <span class="logo">ASTRANEX DEFENCE</span>
+        </a>
+
+        <!-- Desktop navigation -->
+        <nav class="main-nav" aria-label="Primary navigation">
+            <a href="index.html#mission">Mission</a>
+            <a href="index.html#vision">Vision</a>
+            <a href="index.html#team">Our Team</a>
+            <a href="careers.html" class="active" style="opacity: 1; text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);">Careers</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <!-- System status badge -->
+        <div class="system-status" aria-label="System status">SYSTEM: <span class="active"
+                aria-live="polite">ACTIVE</span></div>
+
+        <!-- Mobile hamburger button -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false"
+            aria-controls="mobile-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </header>
+
+    <!-- Mobile navigation drawer -->
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html#mission" class="mobile-nav-link">Mission</a>
+        <a href="index.html#vision" class="mobile-nav-link">Vision</a>
+        <a href="index.html#team" class="mobile-nav-link">Our Team</a>
+        <a href="careers.html" class="mobile-nav-link" style="color: #fff; background: rgba(255, 255, 255, 0.03);">Careers</a>
+        <a href="index.html#about" class="mobile-nav-link">About</a>
+        <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+    </nav>
+
+    <!-- =============================================
+         MAIN CONTENT
+         ============================================= -->
+    <main>
+        <!-- ── HERO ───────────────────────────────── -->
+        <section class="careers-hero">
+            <div class="container centered-layout">
+                <h1 id="careers-heading">BUILD THE FUTURE OF DEFENCE AUTONOMY</h1>
+                <p class="subtext">We are hiring engineers, researchers, and innovators committed to advancing India's defence capabilities.</p>
+            </div>
+        </section>
+
+        <!-- ── RECRUITMENT PORTAL CARD ──────────────────────── -->
+        <section class="content-section" style="padding-top: 0; border-bottom: none;">
+            <div class="container">
+                <div class="portal-card">
+                    <!-- Terminal-style header bar -->
+                    <div class="terminal-header" aria-hidden="true" style="border-bottom: 1px solid var(--border-color);">
+                        <span class="terminal-dot"></span>
+                        <span class="terminal-dot"></span>
+                        <span class="terminal-dot"></span>
+                        RECRUITMENT PORTAL &nbsp;// &nbsp;APPLY.ASTRANEX.SYS
+                    </div>
+
+                    <div class="portal-body">
+                        <div class="portal-badge">● RECRUITMENT ACTIVE</div>
+                        <h2 class="portal-title">APPLICATION FORM</h2>
+                        <p class="portal-desc">
+                            Submit your profile, technical domain expertise, and resume through our official recruitment application portal. Our team reviews submissions on a rolling basis.
+                        </p>
+                        <div class="apply-btn-wrapper">
+                            <a href="https://forms.gle/7efVvhzT1KG5nMT89" target="_blank" rel="noopener noreferrer" class="apply-main-btn">
+                                OPEN APPLICATION FORM ↗
+                            </a>
+                            <span class="portal-note">SECURE GOOGLE FORM GATEWAY &nbsp;|&nbsp; ESTIMATED TIME: 3-5 MINS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Domains -->
+                <h2 class="positions-title">KEY ENGINEERING DOMAINS</h2>
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <h3 class="role-title">Robotics & Mechatronics</h3>
+                        <div class="role-tags">Hardware Design · Embedded Systems · Controls</div>
+                        <p>Design and build resilient physical platforms for mission-critical unmanned ground and air operations.</p>
+                    </div>
+
+                    <div class="role-card">
+                        <h3 class="role-title">Software & Autonomous Navigation</h3>
+                        <div class="role-tags">ROS2 · C++ · Python · Path Planning</div>
+                        <p>Architect robust software stacks, perception pipelines, and autonomous navigation algorithms.</p>
+                    </div>
+
+                    <div class="role-card">
+                        <h3 class="role-title">AI & Mission Security</h3>
+                        <div class="role-tags">Edge-AI · Computer Vision · Cybersecurity</div>
+                        <p>Deploy real-time edge computer vision models and secure communication channels for defence platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Brand column -->
+                <div class="footer-col brand-col">
+                    <h4 class="footer-heading brand">ASTRANEX DEFENCE</h4>
+                    <p class="footer-desc">Autonomous ground systems and edge-AI security platforms engineered for
+                        mission-critical environments.</p>
+                    <nav class="social-links" aria-label="Social media links">
+                        <a href="https://www.linkedin.com/company/astranexdefence/" target="_blank"
+                            rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg></a>
+                        <a href="https://mail.google.com/mail/?view=cm&to=astranexdefence@gmail.com" target="_blank"
+                            rel="noopener noreferrer" class="social-icon" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></a>
+                        <a href="https://www.youtube.com/@astranexdefence" target="_blank" rel="noopener noreferrer"
+                            class="social-icon" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 68.4 68.4 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 68.4 68.4 0 0 1-15 0 2 2 0 0 1-2-2z" /><path d="m10 15 5-3-5-3z" /></svg></a>
+                        <a href="https://www.instagram.com/astranexdefence/" target="_blank" rel="noopener noreferrer"
+                            class="social-icon" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg></a>
+                        <a href="https://www.facebook.com/profile.php?id=61588546832508" target="_blank"
+                            rel="noopener noreferrer" class="social-icon"
+                            aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a>
+                        <a href="https://x.com/astranexdefence" target="_blank" rel="noopener noreferrer"
+                            class="social-icon social-icon--x" aria-label="X (formerly Twitter)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg></a>
+                    </nav>
+                </div>
+
+                <!-- Company links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">COMPANY</h4>
+                    <ul class="footer-nav">
+                        <li><a href="index.html#mission">Mission</a></li>
+                        <li><a href="index.html#vision">Vision</a></li>
+                        <li><a href="index.html#team">Our Team</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">SUPPORT</h4>
+                    <ul class="footer-nav">
+                        <li><a href="index.html#contact">Documentation</a></li>
+                        <li><a href="index.html#contact">Technical Overview</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="index.html#contact">Secure Inquiry</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Legal links -->
+            <nav class="footer-legal" aria-label="Legal links">
+                <a href="index.html#contact">Privacy Policy</a>
+                <a href="index.html#contact">Terms of Service</a>
+                <a href="index.html#contact">Compliance</a>
+                <a href="index.html#contact">Security Statement</a>
+            </nav>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <div class="copyright">© 2026 Astranex Defence. All rights reserved.</div>
+                <div class="footer-status" aria-label="System online">
+                    <span class="status-dot-live" aria-hidden="true"></span>
+                    System Status: Active
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         SCRIPTS
+         ============================================= -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
