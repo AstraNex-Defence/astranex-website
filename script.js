@@ -262,15 +262,18 @@ if (scrollIndicator && heroSection) {
             };
 
             try {
-                const response = await fetch(
+                await fetch(
                     'https://script.google.com/macros/s/AKfycby_sbDSaXX5Mqyu0KpnxKndmOcu6k8JREYxiB7MRS67YO0E24KHOsHUEoN4bpsUXqpB/exec',
                     {
                         method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain;charset=utf-8'
+                        },
                         body: JSON.stringify(formData)
                     }
                 );
 
-                await response.json();
                 submitBtn.textContent = 'MESSAGE SENT ✓';
                 contactForm.reset();
 

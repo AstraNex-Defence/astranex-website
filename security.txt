@@ -1,0 +1,9 @@
+# Astranex Defence Security Disclosure Policy
+# RFC 9116 Canonical Security File
+
+Contact: mailto:astranexdefence@gmail.com
+Contact: https://astranexdefence.com/#contact
+Preferred-Languages: en
+Canonical: https://astranexdefence.com/security.txt
+Policy: https://astranexdefence.com/#contact
+Hiring: https://astranexdefence.com/careers.html
