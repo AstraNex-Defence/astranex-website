@@ -1,14 +1,14 @@
 # Astranex Defence
 
-> Astranex Defence is an autonomous defence technology company developing intelligent robotic platforms and edge-AI security systems engineered for mission-critical land, air, and maritime operations.
+> Astranex Defence develops autonomous robotic platforms and edge-AI security systems engineered for mission-critical land, air, and maritime operations.
 
-## Core Information
-- Official Website: https://astranexdefence.com/
-- Careers & Open Roles: https://astranexdefence.com/careers.html
-- Security Policy & Disclosure: https://astranexdefence.com/.well-known/security.txt
-- Contact: astranexdefence@gmail.com
+## Main Pages
 
-## Focus Areas & Capabilities
-- Autonomous Ground Vehicles (UGVs) & Modular Mechatronic Platforms
-- Real-Time Edge-AI Computer Vision & Secure Tactical Communications
-- Mission-Critical Autonomy and Intelligent Security Solutions
+- [Homepage](https://astranexdefence.com/): Autonomous systems overview, mission, vision, engineering team, and contact inquiry.
+- [Careers Portal](https://astranexdefence.com/careers.html): Career opportunities, open engineering domains, and application form.
+- [Security Policy](https://astranexdefence.com/.well-known/security.txt): Vulnerability disclosure guidelines and official security contacts.
+
+## Optional
+
+- [Robotics & Autonomous Systems](https://astranexdefence.com/#mission): Modular mechatronics and autonomous robotic platform architecture.
+- [Edge-AI Security Platform](https://astranexdefence.com/#vision): Computer vision and situational edge intelligence for sovereign defense.
