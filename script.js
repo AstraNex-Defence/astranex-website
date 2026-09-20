@@ -57,19 +57,19 @@ if (scrollIndicator && heroSection) {
 
     // Toggle menu open/closed
     function toggleMenu(open) {
-        const isOpen = open !== undefined ? open : mobileMenu.classList.toggle('open');
+        const isOpen = open !== undefined ? open : !mobileMenu.classList.contains('open');
+        mobileMenu.classList.toggle('open', isOpen);
         hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-        if (!isOpen) mobileMenu.classList.remove('open');
+        mobileMenu.inert = !isOpen;
     }
 
     if (hamburgerBtn && mobileMenu) {
-    hamburgerBtn.addEventListener('click', () => {
-        const willOpen = !mobileMenu.classList.contains('open');
-        mobileMenu.classList.toggle('open', willOpen);
-        hamburgerBtn.setAttribute('aria-expanded', willOpen);
-        mobileMenu.setAttribute('aria-hidden', !willOpen);
-       });
+        mobileMenu.inert = !mobileMenu.classList.contains('open');
+        hamburgerBtn.addEventListener('click', () => {
+            const willOpen = !mobileMenu.classList.contains('open');
+            toggleMenu(willOpen);
+        });
     }
 
     // Close mobile nav when any link is clicked
@@ -327,12 +327,16 @@ if (scrollIndicator && heroSection) {
                 document.getElementById('modal-linkedin').setAttribute('href', linkedinHref);
 
                 teamModal.classList.add('open');
+                teamModal.setAttribute('aria-hidden', 'false');
+                teamModal.inert = false;
                 document.body.style.overflow = 'hidden'; 
             });
         });
 
         const closeModal = () => {
             teamModal.classList.remove('open');
+            teamModal.setAttribute('aria-hidden', 'true');
+            teamModal.inert = true;
             document.body.style.overflow = '';
         };
 

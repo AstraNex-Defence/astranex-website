@@ -508,15 +508,18 @@ p {
   padding: var(--spacing-sm) 0;
   z-index: 1100;
   /* Hidden by default */
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-8px);
   transition:
     opacity 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .mobile-nav.open {
+  visibility: visible;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
