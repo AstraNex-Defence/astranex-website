@@ -1629,65 +1629,53 @@
         formState.isSubmitting = true;
         if (btnSubmit) {
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = `<span class="spinner-icon"></span> SUBMITTING APPLICATION...`;
+            btnSubmit.innerHTML = `<span class="spinner-icon"></span> TRANSMITTING TO REGISTRY...`;
         }
         if (btnBack) btnBack.disabled = true;
 
         clearStepError();
+        const feedbackArea = document.getElementById("submission-feedback-area");
+        if (feedbackArea) feedbackArea.innerHTML = "";
+
         const payload = buildPayload();
 
-        // Check if endpoint configured
-        if (!APPLICATION_ENDPOINT || APPLICATION_ENDPOINT === "PASTE_APPS_SCRIPT_WEB_APP_URL_HERE") {
-            console.warn("Astranex Recruitment: APPLICATION_ENDPOINT is not configured. Running demo simulation mode.");
-            // Simulate realistic submission for testing/demo purposes if endpoint not yet pasted
-            setTimeout(() => {
-                const simulatedAppId = "AXD-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
-                showSuccessState(simulatedAppId, true);
-            }, 1200);
-            return;
-        }
+        console.log("[Astranex Recruitment] Submitting application to endpoint:", APPLICATION_ENDPOINT);
+        console.log("[Astranex Recruitment] Outgoing JSON payload:", payload);
 
         try {
-            // First attempt standard fetch to retrieve JSON with Application ID
-            let appId = null;
+            const response = await fetch(APPLICATION_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            console.log("[Astranex Recruitment] HTTP response status:", response.status, response.statusText);
+
+            const rawBody = await response.text();
+            console.log("[Astranex Recruitment] Raw server response body:", rawBody);
+
+            let data;
             try {
-                const response = await fetch(APPLICATION_ENDPOINT, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8"
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data && data.success) {
-                        appId = data.applicationId;
-                    }
-                }
-            } catch (fetchErr) {
-                console.warn("Standard fetch encountered redirect/CORS restriction, attempting no-cors transmission...", fetchErr);
-                // Fallback no-cors POST to ensure data reaches Google Sheet even if response headers are restricted
-                await fetch(APPLICATION_ENDPOINT, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "text/plain;charset=utf-8"
-                    },
-                    body: JSON.stringify(payload)
-                });
+                data = JSON.parse(rawBody);
+                console.log("[Astranex Recruitment] Parsed JSON response:", data);
+            } catch (jsonErr) {
+                console.error("[Astranex Recruitment] Server returned non-JSON response:", rawBody);
+                throw new Error("Recruitment gateway returned non-JSON data. Ensure the Google Apps Script Web App is deployed with 'Execute as: Me' and 'Who has access: Anyone'.");
             }
 
-            // If backend didn't return an ID due to CORS redirect restriction, generate client-side ID for user reference
-            if (!appId) {
-                appId = "AXD-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+            if (data && data.success === true && data.applicationId) {
+                console.log("[Astranex Recruitment] Submission verified and recorded. Application ID:", data.applicationId);
+                showSuccessState(data.applicationId);
+            } else {
+                const errMsg = (data && (data.message || data.error)) || "Recruitment backend rejected the submission.";
+                throw new Error(errMsg);
             }
-
-            showSuccessState(appId, false);
 
         } catch (err) {
-            console.error("Submission failed:", err);
-            showErrorState(err.message);
+            console.error("[Astranex Recruitment] Submission failed:", err);
+            showErrorState(err.message || "Network error occurred during submission.");
         } finally {
             formState.isSubmitting = false;
         }
@@ -1696,7 +1684,7 @@
     // ============================================================================
     // SUCCESS & ERROR STATES
     // ============================================================================
-    function showSuccessState(appId, isDemoMode) {
+    function showSuccessState(appId) {
         formState.submittedSuccess = true;
         formState.applicationId = appId;
 
@@ -1712,21 +1700,12 @@
                 
                 <div class="app-id-display-card">
                     <span class="app-id-label">OFFICIAL APPLICATION ID:</span>
-                    <span class="app-id-value">${appId}</span>
+                    <span class="app-id-value">${escapeHtml(appId)}</span>
                 </div>
 
                 <p class="success-desc">
                     Thank you for your interest in Astranex Defence. Your technical application and engineering profile have been registered in our evaluation pipeline.
                 </p>
-
-                ${isDemoMode ? `
-                    <div class="notice-box notice-info" style="text-align: left; margin: 24px 0;">
-                        <div class="notice-icon">⚙</div>
-                        <div class="notice-text">
-                            <strong>Demo Configuration Note:</strong> The Google Apps Script Web App endpoint URL has not been pasted into <code>careers.js</code> yet. Update <code>APPLICATION_ENDPOINT</code> in <code>careers.js</code> with your deployed Apps Script URL to store live rows directly into your Google Sheet.
-                        </div>
-                    </div>
-                ` : ""}
 
                 <div class="success-actions">
                     <a href="index.html" class="apply-main-btn" style="width: auto; padding: 0 32px;">RETURN TO HOME</a>
@@ -1741,22 +1720,28 @@
     function showErrorState(msg) {
         if (btnSubmit) {
             btnSubmit.disabled = false;
-            btnSubmit.innerHTML = `SUBMIT APPLICATION`;
+            btnSubmit.innerHTML = `RETRY SUBMISSION`;
         }
         if (btnBack) btnBack.disabled = false;
 
         const feedbackArea = document.getElementById("submission-feedback-area");
         if (feedbackArea) {
             feedbackArea.innerHTML = `
-                <div class="notice-box notice-error animate-fade">
-                    <div class="notice-icon">✕</div>
-                    <div class="notice-text">
-                        <strong>Submission Error:</strong> Unable to submit your application (${escapeHtml(msg || "Network issue")}). Please verify your connection and try again.
+                <div class="notice-box notice-error animate-fade" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 1px;">
+                        <span class="notice-icon" style="font-size: 1.2rem;">✕</span>
+                        <span>SUBMISSION FAILED</span>
+                    </div>
+                    <div class="notice-text" style="font-size: 0.9rem; color: #fca5a5;">
+                        Your application was not submitted. Please try again.
+                    </div>
+                    <div style="font-family: var(--font-mono); font-size: 0.76rem; color: #f87171; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 2px; width: 100%; word-break: break-word; margin-top: 4px;">
+                        DIAGNOSTIC: ${escapeHtml(msg || "Unknown transmission failure")}
                     </div>
                 </div>
             `;
         } else {
-            showStepError(msg || "Unable to submit your application. Please try again.");
+            showStepError("SUBMISSION FAILED: Your application was not submitted. Please try again.");
         }
     }
 
