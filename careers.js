@@ -12,7 +12,7 @@
     // BACKEND CONFIGURATION — TECHNICAL RECRUITMENT ONLY
     // Dedicated endpoint for Candidate Applications (Google Sheet: Astranex Defence Candidate Applications)
     // ============================================================================
-    const APPLICATION_ENDPOINT = window.NEXT_PUBLIC_APPLICATION_ENDPOINT || "https://script.google.com/macros/s/AKfycbxJl8RIJtsmo-HspTSDY-fsxfd1OSu0Tg_UxYoyYxUOgkCALyqBrVtCmYOcBr9CHFwF/exec";
+    const APPLICATION_ENDPOINT = window.NEXT_PUBLIC_APPLICATION_ENDPOINT || "https://script.google.com/macros/s/AKfycbxx4iL55NMeFjSyOAwMxCntYXrqLWSA_WEvOHvbV2oAypYLZGjL2XO-YY3Lc3Gm9dVg/exec";
 
     // ============================================================================
     // 13 TECHNICAL DOMAINS SPECIFICATION & QUESTION BANK
