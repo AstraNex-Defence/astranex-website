@@ -1,20 +1,20 @@
 /**
  * ============================================================================
- * ASTRANEX DEFENCE — RECRUITMENT BACKEND (Google Apps Script)
- * Sheet: "Astranex Defence Candidate Applications"
+ * ASTRANEX DEFENCE — TECHNICAL RECRUITMENT BACKEND (25-COLUMN SCHEMA)
+ * Spreadsheet: "Astranex Defence Candidate Applications"
  * Tab: "Candidate Applications"
  * ============================================================================
  * 
- * Column Mapping (Row 1 Headers):
- * 1. Application ID
- * 2. Timestamp
- * 3. Name
- * 4. Email
- * 5. Phone
- * 6. Location
- * 7. College
- * 8. Degree
- * 9. Graduation Year
+ * 25 Column Schema (A to Y):
+ * 1.  Application ID
+ * 2.  Timestamp
+ * 3.  Name
+ * 4.  Email
+ * 5.  Phone
+ * 6.  Location
+ * 7.  College
+ * 8.  Degree
+ * 9.  Graduation Year
  * 10. Engagement
  * 11. Primary Domain
  * 12. Secondary Domains
@@ -24,22 +24,18 @@
  * 16. Hours Per Week
  * 17. Work Preference
  * 18. Start Date
- * 19. Long Term Interest
- * 20. Core Team Interest
- * 21. Project Name
- * 22. Project Link
- * 23. Project Description
- * 24. Technical Skills Summary
- * 25. Technical Score
- * 26. Application Status
- * 27. Reviewer Notes
- * 28. Raw Application Data
+ * 19. Long Term & Core Commitment
+ * 20. Project Name
+ * 21. Project Link
+ * 22. Project Deep Dive
+ * 23. Technical Skills Summary
+ * 24. Technical Score
+ * 25. Application Status
  */
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
   try {
-    // Acquire lock for up to 30 seconds to prevent race conditions during concurrent submissions
     lock.waitLock(30000);
 
     var rawData = e.postData ? e.postData.contents : null;
@@ -52,21 +48,34 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName(sheetName);
 
+    var headers = [
+      "Application ID", "Timestamp", "Name", "Email", "Phone", "Location",
+      "College", "Degree", "Graduation Year", "Engagement", "Primary Domain",
+      "Secondary Domains", "LinkedIn", "GitHub", "Portfolio", "Hours Per Week",
+      "Work Preference", "Start Date", "Long Term & Core Commitment", "Project Name",
+      "Project Link", "Project Deep Dive", "Technical Skills Summary", "Technical Score",
+      "Application Status"
+    ];
+
+    // Initialize or re-header if new sheet
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
-      // Initialize headers if new sheet
-      var headers = [
-        "Application ID", "Timestamp", "Name", "Email", "Phone", "Location",
-        "College", "Degree", "Graduation Year", "Engagement", "Primary Domain",
-        "Secondary Domains", "LinkedIn", "GitHub", "Portfolio", "Hours Per Week",
-        "Work Preference", "Start Date", "Long Term Interest", "Core Team Interest",
-        "Project Name", "Project Link", "Project Description",
-        "Technical Skills Summary", "Technical Score", "Application Status",
-        "Reviewer Notes", "Raw Application Data"
-      ];
       sheet.appendRow(headers);
-      sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#080a0d").setFontColor("#ffffff");
+    } else if (sheet.getLastRow() === 0) {
+      sheet.appendRow(headers);
     }
+
+    // Freeze top row and columns A-C for optimal readability
+    sheet.setFrozenRows(1);
+    sheet.setFrozenColumns(3);
+
+    // Style Header Row
+    var headerRange = sheet.getRange(1, 1, 1, 25);
+    headerRange.setFontWeight("bold")
+               .setBackground("#0d1117")
+               .setFontColor("#58a6ff")
+               .setVerticalAlignment("middle");
+    sheet.setRowHeight(1, 38);
 
     // Generate unique Application ID: AXD-YYYY-XXXX
     var now = new Date();
@@ -80,6 +89,12 @@ function doPost(e) {
     var secondaryDomains = Array.isArray(data.secondaryDomains) 
       ? data.secondaryDomains.join(", ") 
       : (data.selectedDomains && data.selectedDomains.length > 1 ? data.selectedDomains.slice(1).join(", ") : "");
+
+    var commitmentInfo = [
+      "Long-Term: " + (data.longTermInterest || "N/A"),
+      "Subsystem Ownership: " + (data.coreTeamInterest || "N/A"),
+      "Unpaid Terms: " + (data.unpaidAcknowledgement || "Yes")
+    ].join(" | ");
 
     var row = [
       appId,                                          // 1. Application ID
@@ -100,24 +115,23 @@ function doPost(e) {
       data.hoursPerWeek || "",                        // 16. Hours Per Week
       data.workPreference || "",                      // 17. Work Preference
       data.startDate || "",                           // 18. Start Date
-      data.longTermInterest || "",                    // 19. Long Term Interest
-      data.coreTeamInterest || "",                    // 20. Core Team Interest
-      data.projectName || "",                         // 21. Project Name
-      data.projectLink || "",                         // 22. Project Link
-      data.projectDescription || data.projectBuilt || "", // 23. Project Description
-      data.technicalSkillsSummary || "",              // 24. Technical Skills Summary
-      data.technicalScore || "",                      // 25. Technical Score
-      "NEW_SUBMISSION",                               // 26. Application Status
-      "",                                             // 27. Reviewer Notes
-      JSON.stringify(data)                            // 28. Raw Application Data
+      commitmentInfo,                                 // 19. Long Term & Core Commitment
+      data.projectName || "",                         // 20. Project Name
+      data.projectLink || "",                         // 21. Project Link
+      data.projectDescription || data.projectBuilt || "", // 22. Project Deep Dive
+      data.technicalSkillsSummary || "",              // 23. Technical Skills Summary
+      data.technicalScore || "",                      // 24. Technical Score
+      "NEW_SUBMISSION"                                // 25. Application Status
     ];
 
     sheet.appendRow(row);
+    var lastRow = sheet.getLastRow();
+    sheet.getRange(lastRow, 1, 1, 25).setVerticalAlignment("top");
 
     return createJsonResponse({
       success: true,
       applicationId: appId,
-      message: "Application successfully submitted and recorded."
+      message: "Application recorded successfully in 25-column registry."
     });
 
   } catch (err) {
@@ -134,7 +148,8 @@ function doPost(e) {
 function doGet(e) {
   return createJsonResponse({
     status: "ACTIVE",
-    service: "Astranex Defence Recruitment Gateway",
+    service: "Astranex Defence Technical Recruitment Gateway",
+    columns: 25,
     timestamp: new Date().toISOString()
   });
 }
