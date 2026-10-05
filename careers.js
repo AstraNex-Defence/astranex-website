@@ -12,7 +12,7 @@
     // BACKEND CONFIGURATION — TECHNICAL RECRUITMENT ONLY
     // Dedicated endpoint for Candidate Applications (Google Sheet: Astranex Defence Candidate Applications)
     // ============================================================================
-    const APPLICATION_ENDPOINT = window.NEXT_PUBLIC_APPLICATION_ENDPOINT || "https://script.google.com/macros/s/AKfycbxx4iL55NMeFjSyOAwMxCntYXrqLWSA_WEvOHvbV2oAypYLZGjL2XO-YY3Lc3Gm9dVg/exec";
+    const APPLICATION_ENDPOINT = window.NEXT_PUBLIC_APPLICATION_ENDPOINT || "https://script.google.com/macros/s/AKfycbx49n3sU8lSurA3wXCf2_ZmazzBXYl4RQwrroUFg0CMHTa4d1blQ1FrISC8MPYarfau/exec";
 
     // ============================================================================
     // 13 TECHNICAL DOMAINS SPECIFICATION & QUESTION BANK
@@ -445,6 +445,7 @@
         linkedin: "",
         github: "",
         portfolio: "",
+        resume: "",
         projectName: "",
         projectLink: "",
         projectTech: "",
@@ -1059,12 +1060,19 @@
                     </div>
                 </div>
 
-                <div class="form-grid-3col">
+                <div class="form-grid-2col">
+                    <div class="form-group">
+                        <label class="form-label required" for="input_resume">Resume / CV Link</label>
+                        <input type="url" id="input_resume" class="form-control" name="resume" value="${escapeHtml(formState.resume)}" placeholder="https://drive.google.com/... (Google Drive / Cloud PDF link)" required>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label" for="input_linkedin">LinkedIn Profile URL</label>
                         <input type="url" id="input_linkedin" class="form-control" name="linkedin" value="${escapeHtml(formState.linkedin)}" placeholder="https://linkedin.com/in/username">
                     </div>
+                </div>
 
+                <div class="form-grid-2col">
                     <div class="form-group">
                         <label class="form-label" for="input_github">GitHub Profile URL</label>
                         <input type="url" id="input_github" class="form-control" name="github" value="${escapeHtml(formState.github)}" placeholder="https://github.com/username">
@@ -1256,6 +1264,7 @@
                             <div class="review-item"><span class="label">Location:</span><span class="val">${escapeHtml(formState.location || "—")}</span></div>
                             <div class="review-item"><span class="label">Engagement:</span><span class="val highlight">${escapeHtml(formState.engagement || "—")}</span></div>
                             <div class="review-item"><span class="label">Education:</span><span class="val">${escapeHtml(formState.degree || "—")} (${escapeHtml(formState.college || "—")}, ${escapeHtml(formState.graduationYear || "—")})</span></div>
+                            <div class="review-item full-width"><span class="label">Resume / CV Link:</span><span class="val">${formState.resume ? `<a href="${escapeHtml(formState.resume)}" target="_blank" rel="noopener noreferrer" style="color: #00ffaa; text-decoration: underline;">${escapeHtml(formState.resume)} ↗</a>` : "—"}</span></div>
                         </div>
                     </div>
 
@@ -1474,6 +1483,7 @@
                 if (!formState.college) return { isValid: false, message: "College/University is required." };
                 if (!formState.degree) return { isValid: false, message: "Degree/Program is required." };
                 if (!formState.graduationYear) return { isValid: false, message: "Graduation year is required." };
+                if (!formState.resume) return { isValid: false, message: "Resume / CV link is required." };
                 if (!formState.projectName) return { isValid: false, message: "Strongest technical project name is required." };
                 if (!formState.projectTech) return { isValid: false, message: "Technologies used in project are required." };
                 if (!formState.projectBuilt) return { isValid: false, message: "Please describe what you personally built in the project." };
@@ -1601,6 +1611,8 @@
             linkedin: formState.linkedin,
             github: formState.github,
             portfolio: formState.portfolio,
+            resume: formState.resume,
+            resumeUrl: formState.resume,
             hoursPerWeek: formState.hoursPerWeek,
             workPreference: formState.workPreference,
             startDate: formState.startDate,
