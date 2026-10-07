@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="404 — Page Not Found | Astranex Defence">
+    <meta name="robots" content="noindex, follow">
+    <title>404 — Page Not Found | Astranex Defence</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .error-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: calc(var(--header-h) + 40px) 20px 60px;
+        }
+
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 700;
+            color: #00ffaa;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
+        }
+
+        .error-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .error-desc {
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <header class="sticky-header" role="banner">
+        <a href="index.html#hero" class="brand" aria-label="Astranex Defence — return to top">
+            <span class="brand-symbol" aria-hidden="true">
+                <img src="logo.png" alt="Astranex Defence logo" class="brand-logo">
+            </span>
+            <span class="logo" translate="no">ASTRANEX DEFENCE</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Primary navigation">
+            <a href="index.html#mission">Mission</a>
+            <a href="index.html#vision">Vision</a>
+            <a href="index.html#team">Our Team</a>
+            <a href="careers.html">Careers</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="error-hero">
+            <div class="container">
+                <div class="terminal-badge" style="margin-bottom: 20px;">SYSTEM STATUS // 404 NOT FOUND</div>
+                <div class="error-code">404</div>
+                <h1 class="error-title">RESOURCE NOT FOUND</h1>
+                <p class="error-desc">The requested coordinate or document does not exist in the Astranex Defence network registry.</p>
+                <div class="error-actions">
+                    <a href="index.html" class="btn btn-primary">Return to Base</a>
+                    <a href="careers.html" class="btn btn-secondary">Careers Portal</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <div class="copyright">© 2026 Astranex Defence. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
